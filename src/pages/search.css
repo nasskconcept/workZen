@@ -1,0 +1,221 @@
+.search {
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 3rem;
+}
+
+/* Conteneur principal */
+.search-container {
+  background: rgba(255,255,255,0.98);
+  border-radius: 18px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  box-shadow: 0 6px 32px rgba(10,34,57,0.09);
+  max-width: 860px;    /* plus large pour la maquette */
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Titre principal */
+.search-title {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+  text-align: center;
+  font-weight: 700;
+  color: #23283e;
+  letter-spacing: 1px;
+}
+
+/* ===== FILTRES BAR MAQUETTE ===== */
+.filters-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.2rem;
+  background: #fff;
+  border: 2px solid #d4e5fb;
+  border-radius: 16px;
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin-bottom: 2.7rem;
+  box-shadow: 0 4px 16px rgba(80,140,230,0.04);
+}
+
+.filters-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 180px;
+}
+
+.filters-title {
+  font-size: 1.18rem;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+  color: #182b3a;
+}
+
+.filters-group label {
+  font-size: 1rem;
+  margin-left: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.filters-group input[type="radio"],
+.filters-group input[type="checkbox"] {
+  accent-color: #2563eb;
+  margin-right: 0.3em;
+}
+.filters-group select {
+  border-radius: 7px;
+  border: 1.5px solid #c6d0df;
+  font-size: 1rem;
+  padding: 0.5rem 0.9rem;
+  background: #f8fbff;
+  margin-bottom: 1.3rem;
+}
+.filters-apply-btn {
+  margin-top: 1.3rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 1.4rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  align-self: end;
+}
+.filters-apply-btn:hover {
+  background: #1748b1;
+}
+
+/* ===== Résultats SCROLLABLE ===== */
+.results-scroll {
+  max-height: 440px;
+  overflow-y: auto;
+  margin-top: 1.7rem;
+  padding-right: 0.5rem;
+}
+
+/* ===== Cartes résultats horizontales ===== */
+.result-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(30,60,90,0.07);
+  margin-bottom: 1.7rem;
+  padding: 1.6rem 1.2rem 1.6rem 1.6rem;
+  gap: 1.3rem;
+}
+.result-info-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.card-img-horizontal {
+  width: 185px;
+  height: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(30,60,90,0.06);
+}
+.result-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #23283e;
+}
+.result-infos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin: 0.3rem 0 0.7rem 0;
+  font-size: 1rem;
+  color: #396d90;
+  font-weight: 500;
+}
+.result-type, .result-city, .result-distance, .result-price {
+  background: #f2f4f7;
+  border-radius: 6px;
+  padding: 0.16rem 0.7rem;
+}
+.result-equipements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+.equipement {
+  display: inline-block;
+  padding: 0.19rem 0.77rem;
+  border-radius: 7px;
+  font-size: 0.97rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(30,60,90,0.03);
+  /* Par défaut */
+  background: #eaf0fb;
+  color: #2563eb;
+}
+
+/* ===== Couleurs des badges équipements (maquette Figma) ===== */
+.equipement[data-eq="Wifi"] {
+  background: #e3f4fd;
+  color: #2679bd;
+}
+.equipement[data-eq="Prises"] {
+  background: #e4e8ff;
+  color: #4c5cda;
+}
+.equipement[data-eq="Terrase"], .equipement[data-eq="Terrasse"] {
+  background: #fff7e3;
+  color: #db9513;
+}
+.equipement[data-eq="Café"], .equipement[data-eq="Café offert"] {
+  background: #e8f7e3;
+  color: #24a555;
+}
+.equipement[data-eq="Silence"], .equipement[data-eq="Calme"] {
+  background: #f3f8fa;
+  color: #5ec48d;
+}
+.equipement[data-eq="Salle de lecture"] {
+  background: #f2e8fd;
+  color: #864fc6;
+}
+.equipement[data-eq="Manger"] {
+  background: #fff4da;
+  color: #eeb200;
+}
+
+/* ===== Autres éléments ===== */
+.search-empty {
+  color: #b2bac8;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .search-container {
+    max-width: 98vw;
+    padding: 1rem;
+  }
+  .filters-bar {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem;
+  }
+  .result-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 1rem;
+  }
+  .card-img-horizontal {
+    width: 100%;
+    max-width: 350px;
+    height: 110px;
+  }
+}

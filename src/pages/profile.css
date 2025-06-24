@@ -1,0 +1,115 @@
+/* Conteneur général */
+.profile {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  color: #223047;
+}
+
+/* Titre */
+.profile-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1.8rem;
+  padding-left: 1rem;
+}
+
+/* Formulaire */
+.profile-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 6px 32px rgba(10, 34, 57, 0.09);
+}
+
+/* Fieldsets */
+.profile-fieldset {
+  border: 1.5px solid #c6d0df;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.profile-fieldset legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+  color: #182b3a;
+}
+.profile-fieldset label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #274a6b;
+  margin-bottom: 1rem;
+}
+.profile-fieldset input {
+  margin-top: 0.4rem;
+  padding: 0.8rem 1rem;
+  border: 1.2px solid #c6d0df;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* Boutons */
+.profile-btns {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.profile-save {
+  background: #5e8a6a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.profile-save:hover {
+  background: #396d56;
+}
+.profile-delete {
+  background: #ef426f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.profile-delete:hover {
+  background: #d12a56;
+}
+
+/* structure du formulaire responsive */
+.profile-form {
+  display: flex;
+  gap: 2rem;
+}
+
+/* <= 600px : fieldsets empilés */
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 1rem;
+  }
+  .profile-form {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .profile-fieldset {
+    width: 100%;
+  }
+  .profile-actions {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+  .profile-actions button {
+    width: 100%;
+    text-align: center;
+  }
+}

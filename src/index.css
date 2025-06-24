@@ -1,0 +1,111 @@
+/* 1) Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap');
+
+/* ==== Reset & Base ==== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    min-height: 100vh;
+    font-weight: bold;
+    color: #2B2D42;
+    /* Fond global centré, cover, fixe lors du scroll */
+    background: url('./assets/background.png') center/cover no-repeat fixed;
+    /* Police principale */
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==== Layouts ==== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Permet à <main> (et .home) de pousser le footer en bas */
+main, .home {
+    flex: 1 0 auto;
+}
+
+/* ==== Typography ==== */
+h1, h2, h3 {
+    font-weight: 600;
+    color: #0b2239;
+}
+
+/* ==== Buttons ==== */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+/* ==== Couleurs Utilisées ==== */
+.btn-primary {
+    background-color: #2563eb;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: #fff;
+}
+
+/* ==== Police spécifique pour les liens du header ==== */
+.header_link {
+    font-family: 'Poppins', sans-serif;
+}
+/* === Global Responsive Breakpoints === */
+
+/* Entre 1024px et 769px : fluidifier les paddings */
+@media (max-width: 1024px) {
+  .container,
+  .search-container,
+  .favorites,
+  .profile-container {
+    padding: 1rem;
+    max-width: 95vw;
+  }
+}
+
+/* <= 768px : mobile portrait */
+@media (max-width: 768px) {
+  /* 2) Header passe en colonne + nav centrée */
+  .header_container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .header_nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  /* 3) Footer garde sa place */
+  footer {
+    text-align: center;
+  }
+
+  /* 4) Corps pousse bien le footer */
+  main, .home {
+    flex: 1 0 auto;
+  }
+}

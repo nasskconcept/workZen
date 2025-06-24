@@ -1,0 +1,45 @@
+.home {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    text-align: center;
+    max-width: 700px;
+    margin: 4rem auto;
+}
+
+.home_title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2B2D42;
+    margin-bottom: 1.2rem;
+}
+
+.home_subtitle {
+    color: #8691a4;
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.home_cta {
+    background: #396d90;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 2.2rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.home_cta:hover {
+    background: #2a5470;
+}

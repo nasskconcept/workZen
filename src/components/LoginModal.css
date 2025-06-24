@@ -1,0 +1,84 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 34, 57, 0.40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(10,34,57,0.13);
+  min-width: 340px;
+  position: relative;
+  animation: zoomIn 0.3s;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #396d90;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  margin-top: 1rem;
+}
+
+.login-form input {
+  padding: 0.8rem 1rem;
+  border: 1.2px solid #c6d0df;
+  border-radius: 7px;
+  font-size: 1rem;
+}
+
+.login-btn {
+  background: #396d90;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.login-btn:hover {
+  background: #2a5470;
+}
+
+/* --- Liens S’inscrire / Mot de passe oublié --- */
+.modal-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.modal-link {
+  font-size: 0.9rem;
+  color: #2563eb;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+.modal-link:hover {
+  text-decoration: underline;
+}

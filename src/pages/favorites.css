@@ -1,0 +1,131 @@
+.favorites {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.7rem 0 1.7rem 0;
+}
+
+.favorites-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 2.2rem;
+  padding-left: 1.7rem;
+}
+
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.favorites-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 3px 14px rgba(30,60,90,0.11);
+  padding: 1.3rem 1.7rem 1.3rem 1.2rem;
+  gap: 1.1rem;
+}
+
+.favorites-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.favorites-card-title {
+  font-weight: bold;
+  font-size: 1.13rem;
+  color: #223047;
+  margin-bottom: 0.2rem;
+}
+
+.favorites-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 1.03rem;
+  color: #274a6b;
+}
+
+.favorites-img {
+  width: 142px;
+  height: 92px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 7px rgba(30,60,90,0.07);
+}
+
+.favorites-eqs-label {
+  font-size: 0.96rem;
+  color: #788090;
+  margin-right: 0.4em;
+  margin-top: 0.1em;
+}
+
+.favorites-equipements {
+  margin-top: 0.2em;
+  display: flex;
+  gap: 0.4em;
+  flex-wrap: wrap;
+}
+
+.eq-badge {
+  display: inline-block;
+  padding: 0.13em 0.77em;
+  border-radius: 7px;
+  font-size: 0.97rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(30,60,90,0.03);
+  background: #eaf0fb;
+  color: #2563eb;
+  text-transform: capitalize;
+}
+
+/* ==== Badges dynamiques Figma style ==== */
+.eq-badge[data-eq="Prise"]     { background: #e4e8ff; color: #4c5cda; }
+.eq-badge[data-eq="Calme"]     { background: #f3f8fa; color: #5ec48d; }
+.eq-badge[data-eq="wifi"]      { background: #e3f4fd; color: #2679bd; }
+.eq-badge[data-eq="Payant"]    { background: #e3e0e0; color: #b67b27; }
+.eq-badge[data-eq="Gratuit"]   { background: #e8f7e3; color: #24a555; }
+
+/* Ajoute ici autant de variantes que tu veux selon tes labels */
+
+.favorites-delete-btn {
+  display: block;
+  margin: 2.5rem auto 0 auto;
+  background: #ef426f;
+  color: #fff;
+  border: none;
+  border-radius: 13px;
+  padding: 1.2rem 5.2rem;
+  font-size: 1.28rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(180,50,80,0.10);
+  transition: background 0.18s;
+}
+.favorites-delete-btn:hover {
+  background: #e12a56;
+}
+
+/* <= 750px : carte favoris en vertical */
+@media (max-width: 750px) {
+  .favorites-card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .favorites-img {
+    width: 100%;
+    height: auto;
+  }
+  .favorites-delete-btn {
+    width: 90%;
+    padding: 1rem 0;
+  }
+}
+
