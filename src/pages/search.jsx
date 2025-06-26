@@ -1,5 +1,9 @@
-import { useState } from "react";
+// src/pages/search.jsx
+import React, { useState } from "react";
+import { useFavorites } from "../contexts/FavoritesContext";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "./search.css";
+
 import coffeWork from '../assets/coffeWork.jpg';
 import bibliwork from '../assets/bibliwork.jpg';
 import cowork1 from '../assets/cowork1.jpg';
@@ -16,7 +20,12 @@ const fakeResults = [
   { id: 6, name: "Café Snack Work", type: "Café", city: "Marcq", img: coffeSnackWork, distance: 1.5, price: 2, equipements: ["Wifi", "Prises", "Terrase", "Café", "Manger"] },
 ];
 
-function Search() {
+export default function Search() {
+  // favoris via contexte
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const isFav = id => favorites.some(f => f.id === id);
+
+  // états filtres / résultats
   const [filterType, setFilterType] = useState('');
   const [eqWifi, setEqWifi] = useState(false);
   const [eqPrises, setEqPrises] = useState(false);
@@ -28,17 +37,17 @@ function Search() {
     e.preventDefault();
     let filtered = fakeResults.filter(item =>
       (filterType === "" || item.type === filterType)
-      && (!eqWifi || item.equipements.some(eq => eq.toLowerCase().includes("wifi")))
+      && (!eqWifi   || item.equipements.some(eq => eq.toLowerCase().includes("wifi")))
       && (!eqPrises || item.equipements.some(eq => eq.toLowerCase().includes("prise")))
-      && (!eqCalme || item.equipements.some(eq => eq.toLowerCase().includes("calme") || eq.toLowerCase().includes("silence")))
+      && (!eqCalme  || item.equipements.some(eq => ["calme","silence"].some(w=>eq.toLowerCase().includes(w))))
     );
 
     if (sortBy === "distance") {
-      filtered = filtered.slice().sort((a, b) => a.distance - b.distance);
+      filtered = filtered.slice().sort((a,b)=>a.distance-b.distance);
     } else if (sortBy === "prix_asc") {
-      filtered = filtered.slice().sort((a, b) => a.price - b.price);
+      filtered = filtered.slice().sort((a,b)=>a.price-b.price);
     } else if (sortBy === "prix_desc") {
-      filtered = filtered.slice().sort((a, b) => b.price - a.price);
+      filtered = filtered.slice().sort((a,b)=>b.price-a.price);
     }
 
     setResults(filtered);
@@ -47,37 +56,50 @@ function Search() {
   return (
     <main className="search">
       <div className="search-container">
+        {/* 1. Titre */}
+        <h1 className="search-title">Trouver un espace</h1>
+
+        {/* 2. Barre de filtres */}
         <form className="filters-bar" onSubmit={handleFilterApply}>
           <div className="filters-group">
             <span className="filters-title">Type d’espace</span>
             <label>
-              <input type="radio" name="type" value="" checked={filterType === ""} onChange={() => setFilterType("")} /> Tous
+              <input type="radio" name="type" value="" checked={filterType === ""} onChange={()=>setFilterType("")} />
+              Tous
             </label>
             <label>
-              <input type="radio" name="type" value="Bureau" checked={filterType === "Bureau"} onChange={() => setFilterType("Bureau")} /> Coworking
+              <input type="radio" name="type" value="Bureau" checked={filterType === "Bureau"} onChange={()=>setFilterType("Bureau")} />
+              Coworking
             </label>
             <label>
-              <input type="radio" name="type" value="Bibliothèque" checked={filterType === "Bibliothèque"} onChange={() => setFilterType("Bibliothèque")} /> Bibliothèque
+              <input type="radio" name="type" value="Bibliothèque" checked={filterType === "Bibliothèque"} onChange={()=>setFilterType("Bibliothèque")} />
+              Bibliothèque
             </label>
             <label>
-              <input type="radio" name="type" value="Café" checked={filterType === "Café"} onChange={() => setFilterType("Café")} /> Café
+              <input type="radio" name="type" value="Café" checked={filterType === "Café"} onChange={()=>setFilterType("Café")} />
+              Café
             </label>
           </div>
+
           <div className="filters-group">
             <span className="filters-title">Équipements</span>
             <label>
-              <input type="checkbox" checked={eqWifi} onChange={() => setEqWifi(!eqWifi)} /> Wi-Fi
+              <input type="checkbox" checked={eqWifi}   onChange={()=>setEqWifi(!eqWifi)} />
+              Wi-Fi
             </label>
             <label>
-              <input type="checkbox" checked={eqPrises} onChange={() => setEqPrises(!eqPrises)} /> Prises électriques
+              <input type="checkbox" checked={eqPrises} onChange={()=>setEqPrises(!eqPrises)} />
+              Prises électriques
             </label>
             <label>
-              <input type="checkbox" checked={eqCalme} onChange={() => setEqCalme(!eqCalme)} /> Calme garanti
+              <input type="checkbox" checked={eqCalme}  onChange={()=>setEqCalme(!eqCalme)} />
+              Calme garanti
             </label>
           </div>
+
           <div className="filters-group">
             <span className="filters-title">Trier par</span>
-            <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+            <select value={sortBy} onChange={e=>setSortBy(e.target.value)}>
               <option value="distance">Distance (près → loin)</option>
               <option value="prix_asc">Prix (moins cher → plus cher)</option>
               <option value="prix_desc">Prix (plus cher → moins cher)</option>
@@ -86,12 +108,27 @@ function Search() {
           </div>
         </form>
 
+        {/* 3. Résultats scrollable */}
         <div className="results-scroll">
-          {results.length === 0 ? (
-            <div className="search-empty">Aucun résultat pour le moment.</div>
-          ) : (
-            results.map((item) => (
+          {results.length === 0
+            ? <div className="search-empty">Aucun résultat pour le moment.</div>
+            : results.map(item => (
               <div className="result-card" key={item.id}>
+                {/* cœur favoris */}
+                <button
+                  className="fav-btn"
+                  onClick={() =>
+                    isFav(item.id) ? removeFavorite(item.id) : addFavorite(item)
+                  }
+                  aria-label={isFav(item.id)
+                    ? "Retirer des favoris"
+                    : "Ajouter aux favoris"
+                  }
+                >
+                  {isFav(item.id) ? <AiFillHeart/> : <AiOutlineHeart/>}
+                </button>
+
+                {/* infos texte */}
                 <div className="result-info-col">
                   <span className="result-title">{item.name}</span>
                   <div className="result-infos">
@@ -99,7 +136,10 @@ function Search() {
                     <span className="result-city">{item.city}</span>
                     <span className="result-distance">{item.distance} km</span>
                     <span className="result-price">
-                      {item.price === 0 ? "Gratuit" : item.price + " € /heure"}
+                      {item.price === 0
+                        ? "Gratuit"
+                        : `${item.price} € /h`
+                      }
                     </span>
                   </div>
                   <div className="result-equipements">
@@ -114,14 +154,18 @@ function Search() {
                     ))}
                   </div>
                 </div>
-                <img src={item.img} alt={item.name} className="card-img-horizontal" />
+
+                {/* image */}
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="card-img-horizontal"
+                />
               </div>
             ))
-          )}
+          }
         </div>
       </div>
     </main>
   );
 }
-
-export default Search;

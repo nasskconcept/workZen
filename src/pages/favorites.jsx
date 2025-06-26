@@ -1,64 +1,51 @@
+// src/pages/favorites.jsx
+import React from 'react';
+import { useFavorites } from '../contexts/FavoritesContext';
 import './favorites.css';
-import bibliwork from '../assets/bibliwork.jpg';
-import cowork1 from '../assets/cowork1.jpg';
 
-const favoritesData = [
-  {
-    id: 1,
-    name: "Coworking Lille Centre",
-    type: "Coworking",
-    city: "Lille",
-    distance: 0.5,
-    price: 15,
-    equipements: ["Prise", "Calme", "wifi", "Payant"],
-    img: cowork1
-  },
-  {
-    id: 2,
-    name: "Bibliothèque Publique",
-    type: "Bibliothèque",
-    city: "Lille",
-    distance: 1.3,
-    price: 0,
-    equipements: ["Prise", "Calme", "wifi"],
-    img: bibliwork
-  }
-];
+export default function Favoris() {
+  const { favorites, removeFavorite } = useFavorites();
 
-function Favoris() {
   return (
     <main className="favorites">
       <h1 className="favorites-title">Favoris</h1>
       <div className="favorites-list">
-        {favoritesData.map(item => (
+        {favorites.map(item => (
           <div className="favorites-card" key={item.id}>
             <div className="favorites-info">
               <span className="favorites-card-title">{item.name}</span>
               <div className="favorites-infos">
-                <span className="favorites-type">Type&nbsp;: {item.type}</span>
-                <span className="favorites-distance">Distance&nbsp;: {item.distance} km</span>
-                <span className="favorites-price">
-                  Prix&nbsp;: {item.price === 0 ? "0 €" : item.price + " €"}/heure
-                </span>
-                <span className="favorites-eqs-label">Équipements&nbsp;:</span>
+                <span>Type : {item.type}</span>
+                <span>Ville : {item.city}</span>
+                <span>Distance : {item.distance} km</span>
+                <span>Prix : {item.price === 0 ? 'Gratuit' : `${item.price} €/h`}</span>
                 <div className="favorites-equipements">
                   {item.equipements.map((eq, i) => (
-                    <span
-                      key={i}
-                      className="eq-badge"
-                      data-eq={eq}
-                    >{eq}</span>
+                    <span key={i} className="eq-badge" data-eq={eq}>
+                      {eq}
+                    </span>
                   ))}
                 </div>
               </div>
             </div>
+
             <img src={item.img} alt={item.name} className="favorites-img" />
+
+            {/* Petite croix de suppression */}
+            <button
+              className="fav-remove-btn"
+              onClick={() => removeFavorite(item.id)}
+              aria-label="Retirer des favoris"
+            >
+              ×
+            </button>
           </div>
         ))}
+
+        {favorites.length === 0 && (
+          <p className="favorites-empty">Vous n'avez aucun favori.</p>
+        )}
       </div>
-      <button className="favorites-delete-btn">Supprimer</button>
     </main>
   );
 }
-
-export default Favoris;

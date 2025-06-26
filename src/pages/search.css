@@ -219,3 +219,25 @@
     height: 110px;
   }
 }
+.result-card {
+  position: relative;
+  /* ton display flex déjà présent… */
+}
+
+.fav-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+.fav-btn:hover {
+  transform: scale(1.2);
+}

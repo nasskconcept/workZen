@@ -19,6 +19,7 @@
 }
 
 .favorites-card {
+  position: relative; /* <-- nécessaire pour l'absolu du bouton */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,34 +87,65 @@
   text-transform: capitalize;
 }
 
-/* ==== Badges dynamiques Figma style ==== */
+/* ==== Badges dynamiques ==== */
 .eq-badge[data-eq="Prise"]     { background: #e4e8ff; color: #4c5cda; }
 .eq-badge[data-eq="Calme"]     { background: #f3f8fa; color: #5ec48d; }
 .eq-badge[data-eq="wifi"]      { background: #e3f4fd; color: #2679bd; }
 .eq-badge[data-eq="Payant"]    { background: #e3e0e0; color: #b67b27; }
 .eq-badge[data-eq="Gratuit"]   { background: #e8f7e3; color: #24a555; }
 
-/* Ajoute ici autant de variantes que tu veux selon tes labels */
-
+/* ==== Bouton Supprimer ==== */
 .favorites-delete-btn {
-  display: block;
-  margin: 2.5rem auto 0 auto;
+  position: absolute;    /* positionné par rapport à .favorites-card */
+  top: 1rem;             /* ajuste en fonction de ton design */
+  right: 1rem;
+  margin: 0;             /* supprime l'ancien margin centré */
   background: #ef426f;
   color: #fff;
   border: none;
   border-radius: 13px;
-  padding: 1.2rem 5.2rem;
+  padding: 1.2rem 2.8rem; /* réduit un peu la largeur si besoin */
   font-size: 1.28rem;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 2px 12px rgba(180,50,80,0.10);
   transition: background 0.18s;
+  z-index: 5;            /* au-dessus du contenu */
 }
+
 .favorites-delete-btn:hover {
   background: #e12a56;
 }
 
-/* <= 750px : carte favoris en vertical */
+/* ==== Formulaire d’ajout de favori ==== */
+.favorites-add-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.favorites-add-form input {
+  padding: 0.7rem 1rem;
+  border: 1.2px solid #c6d0df;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.add-btn {
+  grid-column: span 2;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-btn:hover {
+  background: #1850c0;
+}
+
+/* ==== Responsive <=750px ==== */
 @media (max-width: 750px) {
   .favorites-card {
     flex-direction: column;
@@ -124,8 +156,61 @@
     height: auto;
   }
   .favorites-delete-btn {
-    width: 90%;
-    padding: 1rem 0;
+    top: 0.8rem;
+    right: 0.8rem;
+    padding: 1rem 2rem;
   }
 }
+/* Suppression discrète : petite croix dans le coin */
+.fav-remove-btn {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #ef426f;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s, transform 0.15s;
+}
+.fav-remove-btn:hover {
+  color: #c31e4f;
+  transform: scale(1.2);
+}
 
+/* Pour que la position absolute fonctionne, la carte doit être relative */
+.favorites-card {
+  position: relative;
+}
+/* Position relative de la carte pour l’absolu */
+.favorites-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 3px 14px rgba(30,60,90,0.11);
+  padding: 1.3rem 1.7rem 1.3rem 1.2rem;
+  gap: 1.1rem;
+}
+
+/* Petite croix de suppression */
+.fav-remove-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #ef426f;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s, transform 0.15s;
+}
+.fav-remove-btn:hover {
+  color: #c31e4f;
+  transform: scale(1.2);
+}
